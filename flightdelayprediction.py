@@ -10,6 +10,7 @@ import datetime as dt
 from sklearn.linear_model import LogisticRegression
 from flask import Flask,render_template,request,redirect
 import pandas as pd
+import os
 
 clf=pickle.load( open( "logregmod.p", "rb" ) )
 origins=pickle.load( open( "origins.p", "rb" ) )
@@ -115,4 +116,7 @@ def predict():
     
     
 if __name__ == "__main__":
-    app.run(debug=False)
+    #app.run(debug=False)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug= True)
+    
