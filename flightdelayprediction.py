@@ -11,6 +11,16 @@ from sklearn.linear_model import LogisticRegression
 from flask import Flask,render_template,request,redirect
 import pandas as pd
 import os
+import numpy as np
+
+classes=np.loadtxt('modclasses.txt', delimiter=',')
+coef=np.loadtxt('modcoef.txt', delimiter=',')
+coef=coef.reshape((1,coef.size))
+intercept=np.loadtxt('modintercept.txt', delimiter=',')
+#testx=np.loadtxt('testx.txt', delimiter=',')
+clf2=LogisticRegression(class_weight=None, verbose=5,penalty= 'l2')
+clf2.classes_, clf2.coef_, clf2.intercept_ =classes, coef, intercept
+
 
 clf=pickle.load( open( "logregmod.p", "rb" ) )
 origins=pickle.load( open( "origins.p", "rb" ) )
@@ -104,6 +114,9 @@ def predict():
     getdummies('DAY_OF_WEEK',[str(i) for i in range(1,8)], str(weekday), indata)
     pre = clf.predict(indata)
     pro = clf.predict_proba(indata)
+    print('first pred', clf.predict_proba(indata))
+    pre2 = clf2.predict_proba(indata)
+    print('second pred', clf2.predict_proba(indata))
     prstr='ontime' if pro[0,1]<tr else 'delayed'
     flightstr= origin+' to '+ destination+ ' on ' + month + '/'+ day+'/' +\
     year +   ' at ' + str(hour).zfill(2)+ ':' + str(minute).zfill(2) 
