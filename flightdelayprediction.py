@@ -64,8 +64,8 @@ def mkopt(d,l,sel):
 
 app = Flask(__name__)
 answer=''
-@app.route('/index',methods=['GET'])
-def test():
+@app.route('/',methods=['GET'])
+def select():
     global year
     now=dt.datetime.now()
     dic_year={str(i): str(i) for i in range(now.year-5,now.year+2)}
@@ -110,7 +110,7 @@ def predict():
     answer='<p style="background-color:#d1efef;padding: 10%" >The flight from '+flightstr +\
         ' is predicted <br><font size=10>'+ prstr+'</font></p>'
     
-    return redirect('/index')
+    return redirect('/')
     
     
     
