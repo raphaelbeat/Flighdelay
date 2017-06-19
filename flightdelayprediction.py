@@ -112,8 +112,8 @@ def predict():
     getdummies('CRS_DEP_TIME',list(dic_hour), hour, indata)
     weekday=dt.datetime(int(year),int(month),int(day)).weekday()+1
     getdummies('DAY_OF_WEEK',[str(i) for i in range(1,8)], str(weekday), indata)
-    indata.to_csv('inputdata.csv')
-    indata2=pd.read_csv('inputdata.csv',index_col=0)
+    indata.to_csv('static/inputdata.csv')
+    indata2=pd.read_csv('static/inputdata.csv',index_col=0)
     pre = clf.predict(indata)
     pro = clf.predict_proba(indata)
     print('first pred', clf.predict_proba(indata))
