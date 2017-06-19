@@ -64,7 +64,7 @@ def mkopt(d,l,sel):
 
 app = Flask(__name__)
 answer=''
-@app.route('/test',methods=['GET'])
+@app.route('/index',methods=['GET'])
 def test():
     global year
     now=dt.datetime.now()
@@ -110,7 +110,7 @@ def predict():
     answer='<p style="background-color:#d1efef;padding: 10%" >The flight from '+flightstr +\
         ' is predicted <br><font size=10>'+ prstr+'</font></p>'
     
-    return redirect('/test')
+    return redirect('/index')
     
     
     
@@ -118,5 +118,5 @@ def predict():
 if __name__ == "__main__":
     #app.run(debug=False)
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug= True)
+    app.run(host='0.0.0.0', port=port, debug=False)
     
