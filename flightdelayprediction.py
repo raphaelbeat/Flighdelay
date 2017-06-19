@@ -17,7 +17,7 @@ classes=np.loadtxt('modclasses.txt', delimiter=',')
 coef=np.loadtxt('modcoef.txt', delimiter=',')
 coef=coef.reshape((1,coef.size))
 intercept=np.loadtxt('modintercept.txt', delimiter=',')
-testx=np.loadtxt('testx.txt', delimiter=',')
+
 clf2=LogisticRegression(class_weight=None, verbose=5,penalty= 'l2')
 clf2.classes_, clf2.coef_, clf2.intercept_ =classes, coef, intercept
 
