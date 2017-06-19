@@ -1,2 +1,4 @@
 flask>=0
 sklearn>=0
+numpy>=0
+pandas>=0
